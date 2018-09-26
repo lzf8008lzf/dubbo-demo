@@ -20,8 +20,8 @@ public class DubboConsumer {
 
     private static Logger logger = LoggerFactory.getLogger(DubboConsumer.class);
 
-//   (version = "1.0.0")
-    @Reference
+    @Reference(version = "${demo.service.version}",
+            application = "${dubbo.application.id}")
     private IDubboService consumerService;
 
     public void sayHello() {

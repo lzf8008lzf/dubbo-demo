@@ -1,7 +1,7 @@
 buildscript {
     ext {
         //springboot版本
-        springBootVersion = '2.0.0.RELEASE'
+        springBootVersion = '2.0.3.RELEASE'
         fastJsonVersion = '1.2.49'
     }
     repositories {
@@ -28,8 +28,10 @@ allprojects {
     dependencies {
         compile "org.springframework.boot:spring-boot-starter-web:${springBootVersion}"
         compile 'com.alibaba:dubbo:2.6.2'
-        compile 'io.dubbo.springboot:spring-boot-starter-dubbo:1.0.0'
-        compile group: 'org.apache.curator', name: 'curator-framework', version: '2.6.0'
+        compile group: 'com.alibaba.boot', name: 'dubbo-spring-boot-starter', version: '0.2.0'
+        compile group: 'com.alibaba.boot', name: 'dubbo-spring-boot-actuator', version: '0.2.0'
+        compile group: 'com.alibaba.boot', name: 'dubbo-spring-boot-autoconfigure', version: '0.2.0'
+//        compile group: 'org.apache.curator', name: 'curator-framework', version: '2.6.0'
 
         testCompile "org.springframework.boot:spring-boot-starter-test:${springBootVersion}"
     }

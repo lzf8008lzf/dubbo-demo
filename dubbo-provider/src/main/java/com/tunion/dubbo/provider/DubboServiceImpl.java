@@ -13,7 +13,10 @@ import java.util.Map;
 /**
  * Created by Think on 2017/11/16.
  */
-@Service//(version = "1.0.0")
+@Service(version = "${demo.service.version}",
+        application = "${dubbo.application.id}",
+        protocol = "${dubbo.protocol.id}",
+        registry = "${dubbo.registry.id}")
 public class DubboServiceImpl  implements IDubboService {
 
     private static Logger logger = LoggerFactory.getLogger(DubboServiceImpl.class);

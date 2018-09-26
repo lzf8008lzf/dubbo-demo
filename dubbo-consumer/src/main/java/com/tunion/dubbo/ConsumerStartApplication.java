@@ -4,14 +4,12 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.data.jpa.JpaRepositoriesAutoConfiguration;
-import org.springframework.context.annotation.ComponentScan;
 
 /**
  * Created by Think on 2017/11/16.
  */
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = "com.tunion.dubbo")
 @EnableAutoConfiguration(exclude={JpaRepositoriesAutoConfiguration.class})
-@ComponentScan(basePackages = { "com.tunion" })
 public class ConsumerStartApplication {
 
     public static void main(String[] args) {
