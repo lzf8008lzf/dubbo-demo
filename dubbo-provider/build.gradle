@@ -1,3 +1,4 @@
 dependencies {
     compile project(':dubbo-api')
+    compile project(':dubbo-autoconfigure')
 }
