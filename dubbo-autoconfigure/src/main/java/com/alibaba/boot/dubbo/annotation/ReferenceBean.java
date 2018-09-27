@@ -97,16 +97,12 @@ public class ReferenceBean<T> extends com.alibaba.dubbo.config.spring.ReferenceB
                 String keyVersion=self_.getId()+version;
                 ReferenceConfig config=null;
 
-                if(versionMap.get(keyVersion)!=null)
-                {
-                    config=(ReferenceConfig)versionMap.get(keyVersion);
-                    target = (T)config.get();
-                    T retObj = (T)thisMethod.invoke(target,args);
-
-                    return retObj;
-                }
-
                 synchronized (self_){
+                    if(versionMap.get(keyVersion)!=null)
+                    {
+                        config=(ReferenceConfig)versionMap.get(keyVersion);
+                    }
+
                     if(config==null)
                     {
                         config=(ReferenceConfig)self_.clone();
