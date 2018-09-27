@@ -16,9 +16,9 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class ReferenceBean<T> extends com.alibaba.dubbo.config.spring.ReferenceBean<T> implements Cloneable{
 
-    private static final long serialVersionUID = 213195494150089726L;
-
     private static Logger logger = LoggerFactory.getLogger(ReferenceBean.class);
+
+    private static final long serialVersionUID = 213195494150089726L;
 
     private transient T proxy;//代理
 
@@ -26,7 +26,7 @@ public class ReferenceBean<T> extends com.alibaba.dubbo.config.spring.ReferenceB
 
     private transient ReferenceBean self_=this;
 
-    private transient ConcurrentHashMap<String,ReferenceConfig> versionMap=new ConcurrentHashMap<String,ReferenceConfig>();
+    private transient ConcurrentHashMap<String,Object> versionMap=new ConcurrentHashMap<String,Object>();
 
     private transient final String DEFAULT_VERSION="1.0.0";
 
@@ -85,15 +85,26 @@ public class ReferenceBean<T> extends com.alibaba.dubbo.config.spring.ReferenceB
             public Object invoke(Object self, Method thisMethod, Method proceed, Object[] args) throws Throwable {
                 T target = null;
                 String version=DEFAULT_VERSION;
-
                 if(versionDesider!=null) {
                     version = versionDesider.desideVersion(self_);
-                }else{
+                }
+                {
                     logger.error("versionDesider is null!");
                 }
 
                 if(version==null) version = DEFAULT_VERSION;
+
+                String keyVersion=self_.getId()+version;
                 ReferenceConfig config=null;
+
+                if(versionMap.get(keyVersion)!=null)
+                {
+                    config=(ReferenceConfig)versionMap.get(keyVersion);
+                    target = (T)config.get();
+                    T retObj = (T)thisMethod.invoke(target,args);
+
+                    return retObj;
+                }
 
                 synchronized (self_){
                     if(config==null)
@@ -101,12 +112,14 @@ public class ReferenceBean<T> extends com.alibaba.dubbo.config.spring.ReferenceB
                         config=(ReferenceConfig)self_.clone();
                         config.setVersion(version);
                         config.setCheck(false);
-                        versionMap.put(version,config);
+
+                        versionMap.put(keyVersion,config);
                     }
                 }
 
                 target = (T)config.get();
                 T retObj = (T)thisMethod.invoke(target,args);
+
                 return retObj;
             }
         });
