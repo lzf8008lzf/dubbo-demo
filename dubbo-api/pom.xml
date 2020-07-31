@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.wantup.dubbo</groupId>
-        <artifactId>gateway-parent</artifactId>
+        <artifactId>dubbodemo</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
     <groupId>com.wantup.api</groupId>

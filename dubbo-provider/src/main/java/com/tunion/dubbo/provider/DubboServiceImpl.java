@@ -1,29 +1,30 @@
 package com.tunion.dubbo.provider;
 
-import org.apache.dubbo.config.annotation.Service;
-import org.apache.dubbo.rpc.RpcContext;
 import com.tunion.cores.result.Results;
 import com.tunion.dubbo.IService.IDubboService;
+import com.tunion.dubbo.WelcomeAd;
 import com.tunion.dubbo.pojo.Screen;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.dubbo.config.annotation.DubboService;
+import org.apache.dubbo.rpc.RpcContext;
 
 import java.util.Map;
 
 /**
  * Created by Think on 2017/11/16.
  */
-@Service(version = "${demo.service.version}",
-        application = "${dubbo.application.id}",
-        protocol = "${dubbo.protocol.id}",
-        registry = "${dubbo.registry.id}")
+@DubboService
+@Slf4j
 public class DubboServiceImpl  implements IDubboService {
 
-    private static Logger logger = LoggerFactory.getLogger(DubboServiceImpl.class);
+    public DubboServiceImpl()
+    {
+        System.err.println("---------------------------");
+    }
 
     @Override
     public String sayHello(String name) {
-        logger.info(" Hello " + name + ", request from consumer: " + RpcContext.getContext().getRemoteAddress());
+        log.info(" Hello " + name + ", request from consumer: " + RpcContext.getContext().getRemoteAddress());
 
         return "Hello " + name + ", response form provider: " + RpcContext.getContext().getLocalAddress();
     }
@@ -32,7 +33,7 @@ public class DubboServiceImpl  implements IDubboService {
     public Results queryResults(Map<String, Object> map) {
 
         map.forEach((key,val)->{
-            logger.info("key:{},value:{}",key,val);
+            log.info("key:{},value:{}",key,val);
         });
 
         Screen screen = new Screen();
@@ -44,5 +45,19 @@ public class DubboServiceImpl  implements IDubboService {
         Results results = new Results("0","sucess",screen);
 
         return results;
+    }
+
+    @Override
+    public WelcomeAd welcomeAd() {
+        WelcomeAd welcomeAd =new WelcomeAd();
+
+        welcomeAd.setType("img");
+        welcomeAd.setTitle("欧派全屋定制");
+        welcomeAd.setImg("https://yuexiang-video.oss-cn-beijing.aliyuncs.com/2020/06/29/16-57-2507251153116897");
+        welcomeAd.setContent("https://www.oppein.cn/");
+        welcomeAd.setShowUrl("url");
+        welcomeAd.setDuration(3000);
+
+        return welcomeAd;
     }
 }

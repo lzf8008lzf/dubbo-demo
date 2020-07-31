@@ -1,6 +1,8 @@
 package com.tunion.dubbo.consumer;
 
 
+import com.tunion.dubbo.WelcomeAd;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.Reference;
 import com.tunion.cores.result.Results;
 import com.tunion.cores.utils.JacksonUtil;
@@ -16,12 +18,12 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 @Component
+@Slf4j
 public class DubboConsumer {
 
     private static Logger logger = LoggerFactory.getLogger(DubboConsumer.class);
 
-    @Reference(version = "${demo.service.version}",
-            application = "${dubbo.application.id}")
+    @Reference
     private IDubboService consumerService;
 
     public void sayHello() {
@@ -35,6 +37,11 @@ public class DubboConsumer {
 
         String retStr=JacksonUtil.getAllJackson(results);
         logger.info(retStr);
+    }
+
+    public WelcomeAd welcomeAd()
+    {
+        return consumerService.welcomeAd();
     }
 
     public static void main(String[] args) throws IOException, ClassNotFoundException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {

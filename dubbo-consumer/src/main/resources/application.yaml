@@ -1,0 +1,11 @@
+server:
+  port: 8000
+  servlet:
+    context-path: /
+dubbo:
+  application:
+    name: user-service-consumer
+  registry:
+    address: zookeeper://dubbohost:2181
+    protocol: zookeeper
+

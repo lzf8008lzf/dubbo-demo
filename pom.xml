@@ -4,13 +4,13 @@
 
     <!--项目说明：这里作为聚合工程的父工程-->
     <groupId>com.wantup.dubbo</groupId>
-    <artifactId>gateway-parent</artifactId>
+    <artifactId>dubbodemo</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
     <!--基本信息-->
     <description>Dubbo project for Spring Boot</description>
     <modelVersion>4.0.0</modelVersion>
-    <name>gateway-parent</name>
+    <name>dubbo-demo</name>
     <packaging>pom</packaging>
 
     <!--模块说明：这里声明多个模块-->
@@ -25,10 +25,10 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
         <maven.test.skip>true</maven.test.skip>
-        <spring-boot.version>2.2.6.RELEASE</spring-boot.version>
+        <spring-boot.version>2.3.0.RELEASE</spring-boot.version>
         <spring-cloud.version>Hoxton.SR6</spring-cloud.version>
         <spring-cloud-alibaba.version>2.2.1.RELEASE</spring-cloud-alibaba.version>
-        <dubbo.version>2.7.6</dubbo.version>
+        <dubbo.version>2.7.7</dubbo.version>
     </properties>
 
     <!--将共有的依赖放在这里-->
@@ -52,6 +52,35 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+
+<!--            &lt;!&ndash; Apache Dubbo  &ndash;&gt;-->
+<!--            <dependency>-->
+<!--                <groupId>org.apache.dubbo</groupId>-->
+<!--                <artifactId>dubbo-dependencies-bom</artifactId>-->
+<!--                <version>${dubbo.version}</version>-->
+<!--                <type>pom</type>-->
+<!--                <scope>import</scope>-->
+<!--            </dependency>-->
+
+<!--            <dependency>-->
+<!--                <groupId>org.apache.dubbo</groupId>-->
+<!--                <artifactId>dubbo</artifactId>-->
+<!--                <version>${dubbo.version}</version>-->
+<!--                <exclusions>-->
+<!--                    <exclusion>-->
+<!--                        <groupId>org.springframework</groupId>-->
+<!--                        <artifactId>spring</artifactId>-->
+<!--                    </exclusion>-->
+<!--                    <exclusion>-->
+<!--                        <groupId>javax.servlet</groupId>-->
+<!--                        <artifactId>servlet-api</artifactId>-->
+<!--                    </exclusion>-->
+<!--                    <exclusion>-->
+<!--                        <groupId>log4j</groupId>-->
+<!--                        <artifactId>log4j</artifactId>-->
+<!--                    </exclusion>-->
+<!--                </exclusions>-->
+<!--            </dependency>-->
         </dependencies>
     </dependencyManagement>
 
