@@ -14,9 +14,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.alibaba.boot.dubbo.context.event;
+package org.apache.boot.dubbo.context.event;
 
-import com.alibaba.dubbo.common.Version;
+import org.apache.dubbo.common.Version;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.context.event.ApplicationEnvironmentPreparedEvent;
@@ -24,8 +24,8 @@ import org.springframework.boot.context.logging.LoggingApplicationListener;
 import org.springframework.context.ApplicationListener;
 import org.springframework.core.annotation.Order;
 
-import static com.alibaba.boot.dubbo.util.DubboUtils.*;
-import static com.alibaba.dubbo.qos.server.DubboLogo.dubbo;
+import static org.apache.boot.dubbo.util.DubboUtils.*;
+import static org.apache.dubbo.qos.server.DubboLogo.dubbo;
 
 /**
  * Dubbo Welcome Logo {@link ApplicationListener}

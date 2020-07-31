@@ -14,18 +14,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.alibaba.boot.dubbo.autoconfigure;
+package org.apache.boot.dubbo.autoconfigure;
 
-import com.alibaba.boot.dubbo.annotation.ReferenceAnnotationBeanPostProcessor;
-import com.alibaba.boot.dubbo.annotation.ServiceAnnotationBeanPostProcessor;
-import com.alibaba.dubbo.config.AbstractConfig;
-import com.alibaba.dubbo.config.ApplicationConfig;
-import com.alibaba.dubbo.config.annotation.Reference;
-import com.alibaba.dubbo.config.annotation.Service;
-import com.alibaba.dubbo.config.spring.context.annotation.DubboComponentScan;
-import com.alibaba.dubbo.config.spring.context.annotation.DubboConfigConfiguration;
-import com.alibaba.dubbo.config.spring.context.annotation.EnableDubbo;
-import com.alibaba.dubbo.config.spring.context.annotation.EnableDubboConfig;
+import org.apache.boot.dubbo.annotation.ReferenceAnnotationBeanPostProcessor;
+import org.apache.boot.dubbo.annotation.ServiceAnnotationBeanPostProcessor;
+import org.apache.dubbo.config.AbstractConfig;
+import org.apache.dubbo.config.ApplicationConfig;
+import org.apache.dubbo.config.annotation.Reference;
+import org.apache.dubbo.config.annotation.Service;
+import org.apache.dubbo.config.spring.context.annotation.DubboComponentScan;
+import org.apache.dubbo.config.spring.context.annotation.DubboConfigConfiguration;
+import org.apache.dubbo.config.spring.context.annotation.EnableDubbo;
+import org.apache.dubbo.config.spring.context.annotation.EnableDubboConfig;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -38,7 +38,7 @@ import org.springframework.core.env.Environment;
 
 import java.util.Set;
 
-import static com.alibaba.boot.dubbo.util.DubboUtils.*;
+import static org.apache.boot.dubbo.util.DubboUtils.*;
 import static java.util.Collections.emptySet;
 import static org.springframework.beans.factory.config.ConfigurableBeanFactory.SCOPE_PROTOTYPE;
 

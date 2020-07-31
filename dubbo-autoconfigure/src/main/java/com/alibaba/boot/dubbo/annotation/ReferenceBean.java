@@ -1,9 +1,9 @@
-package com.alibaba.boot.dubbo.annotation;
+package org.apache.boot.dubbo.annotation;
 
-import com.alibaba.dubbo.config.ReferenceConfig;
-import com.alibaba.dubbo.config.annotation.Reference;
-import com.alibaba.dubbo.config.spring.extension.SpringExtensionFactory;
-import com.alibaba.dubbo.config.support.Parameter;
+import org.apache.dubbo.config.ReferenceConfig;
+import org.apache.dubbo.config.annotation.Reference;
+import org.apache.dubbo.config.spring.extension.SpringExtensionFactory;
+import org.apache.dubbo.config.support.Parameter;
 import javassist.util.proxy.MethodHandler;
 import javassist.util.proxy.ProxyFactory;
 import javassist.util.proxy.ProxyObject;
@@ -14,7 +14,7 @@ import org.springframework.context.ApplicationContext;
 import java.lang.reflect.Method;
 import java.util.concurrent.ConcurrentHashMap;
 
-public class ReferenceBean<T> extends com.alibaba.dubbo.config.spring.ReferenceBean<T> implements Cloneable{
+public class ReferenceBean<T> extends org.apache.dubbo.config.spring.ReferenceBean<T> implements Cloneable{
 
     private static Logger logger = LoggerFactory.getLogger(ReferenceBean.class);
 

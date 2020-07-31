@@ -14,12 +14,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.alibaba.boot.dubbo.annotation;
+package org.apache.boot.dubbo.annotation;
 
-import com.alibaba.dubbo.config.ConsumerConfig;
-import com.alibaba.dubbo.config.annotation.Reference;
-import com.alibaba.dubbo.config.spring.convert.converter.StringArrayToMapConverter;
-import com.alibaba.dubbo.config.spring.convert.converter.StringArrayToStringConverter;
+import org.apache.dubbo.config.ConsumerConfig;
+import org.apache.dubbo.config.annotation.Reference;
+import org.apache.dubbo.config.spring.convert.converter.StringArrayToMapConverter;
+import org.apache.dubbo.config.spring.convert.converter.StringArrayToStringConverter;
 import org.springframework.context.ApplicationContext;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.core.convert.support.DefaultConversionService;
@@ -28,8 +28,8 @@ import org.springframework.util.ClassUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.DataBinder;
 
-import static com.alibaba.dubbo.config.spring.util.BeanFactoryUtils.getOptionalBean;
-import static com.alibaba.dubbo.config.spring.util.ObjectUtils.of;
+import static org.apache.dubbo.config.spring.util.BeanFactoryUtils.getOptionalBean;
+import static org.apache.dubbo.config.spring.util.ObjectUtils.of;
 
 /**
  * {@link ReferenceBean} Builder

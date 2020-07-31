@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.alibaba.boot.dubbo.annotation;
+package org.apache.boot.dubbo.annotation;
 
 import org.springframework.beans.MutablePropertyValues;
 import org.springframework.beans.PropertyValue;
@@ -23,7 +23,7 @@ import org.springframework.core.env.PropertyResolver;
 
 import java.lang.annotation.Annotation;
 
-import static com.alibaba.dubbo.config.spring.util.AnnotationUtils.getAttributes;
+import static org.apache.dubbo.config.spring.util.AnnotationUtils.getAttributes;
 
 /**
  * {@link Annotation} {@link PropertyValues} Adapter

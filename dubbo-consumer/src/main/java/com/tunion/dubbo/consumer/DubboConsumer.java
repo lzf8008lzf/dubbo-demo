@@ -1,7 +1,7 @@
 package com.tunion.dubbo.consumer;
 
 
-import com.alibaba.dubbo.config.annotation.Reference;
+import org.apache.dubbo.config.annotation.Reference;
 import com.tunion.cores.result.Results;
 import com.tunion.cores.utils.JacksonUtil;
 import com.tunion.dubbo.IService.IDubboService;

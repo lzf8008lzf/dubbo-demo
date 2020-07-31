@@ -14,9 +14,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.alibaba.boot.dubbo.annotation;
+package org.apache.boot.dubbo.annotation;
 
-import com.alibaba.dubbo.config.annotation.Service;
+import org.apache.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.support.BeanDefinitionRegistryPostProcessor;
 
 import java.util.Collection;
@@ -28,7 +28,7 @@ import java.util.Set;
  *
  * @since 2.5.8
  */
-public class ServiceAnnotationBeanPostProcessor extends com.alibaba.dubbo.config.spring.beans.factory.annotation.ServiceAnnotationBeanPostProcessor {
+public class ServiceAnnotationBeanPostProcessor extends org.apache.dubbo.config.spring.beans.factory.annotation.ServiceAnnotationBeanPostProcessor {
 
     public ServiceAnnotationBeanPostProcessor(String... packagesToScan) {
         super(packagesToScan);

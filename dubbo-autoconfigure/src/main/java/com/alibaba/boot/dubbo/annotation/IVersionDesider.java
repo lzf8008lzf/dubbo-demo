@@ -1,6 +1,6 @@
-package com.alibaba.boot.dubbo.annotation;
+package org.apache.boot.dubbo.annotation;
 
-import com.alibaba.dubbo.config.ReferenceConfig;
+import org.apache.dubbo.config.ReferenceConfig;
 
 public interface IVersionDesider {
     public String desideVersion(ReferenceConfig referenceConfig);

@@ -1,7 +1,7 @@
 package com.tunion.dubbo.provider;
 
-import com.alibaba.dubbo.config.annotation.Service;
-import com.alibaba.dubbo.rpc.RpcContext;
+import org.apache.dubbo.config.annotation.Service;
+import org.apache.dubbo.rpc.RpcContext;
 import com.tunion.cores.result.Results;
 import com.tunion.dubbo.IService.IDubboService;
 import com.tunion.dubbo.pojo.Screen;

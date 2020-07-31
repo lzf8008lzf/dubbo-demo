@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.alibaba.boot.dubbo.context.event;
+package org.apache.boot.dubbo.context.event;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -1,5 +1,0 @@
-include 'dubbo-autoconfigure'
-include 'dubbo-api'
-include 'dubbo-consumer'
-include 'dubbo-provider'
-rootProject.name = 'dubbo-demo'

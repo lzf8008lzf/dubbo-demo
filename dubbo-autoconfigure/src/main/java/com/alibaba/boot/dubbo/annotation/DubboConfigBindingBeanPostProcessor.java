@@ -14,10 +14,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.alibaba.boot.dubbo.annotation;
+package org.apache.boot.dubbo.annotation;
 
-import com.alibaba.dubbo.config.spring.context.annotation.DubboConfigBindingRegistrar;
-import com.alibaba.dubbo.config.spring.context.annotation.EnableDubboConfigBinding;
+import org.apache.dubbo.config.spring.context.annotation.DubboConfigBindingRegistrar;
+import org.apache.dubbo.config.spring.context.annotation.EnableDubboConfigBinding;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 
 /**
@@ -28,7 +28,7 @@ import org.springframework.beans.factory.config.BeanPostProcessor;
  * @since 2.5.8
  */
 
-public class DubboConfigBindingBeanPostProcessor extends com.alibaba.dubbo.config.spring.beans.factory.annotation.DubboConfigBindingBeanPostProcessor {
+public class DubboConfigBindingBeanPostProcessor extends org.apache.dubbo.config.spring.beans.factory.annotation.DubboConfigBindingBeanPostProcessor {
     public DubboConfigBindingBeanPostProcessor(String prefix, String beanName) {
         super(prefix, beanName);
     }

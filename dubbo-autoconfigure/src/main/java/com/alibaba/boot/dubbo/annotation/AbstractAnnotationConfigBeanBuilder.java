@@ -14,13 +14,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.alibaba.boot.dubbo.annotation;
+package org.apache.boot.dubbo.annotation;
 
-import com.alibaba.dubbo.config.AbstractInterfaceConfig;
-import com.alibaba.dubbo.config.ApplicationConfig;
-import com.alibaba.dubbo.config.ModuleConfig;
-import com.alibaba.dubbo.config.MonitorConfig;
-import com.alibaba.dubbo.config.RegistryConfig;
+import org.apache.dubbo.config.AbstractInterfaceConfig;
+import org.apache.dubbo.config.ApplicationConfig;
+import org.apache.dubbo.config.ModuleConfig;
+import org.apache.dubbo.config.MonitorConfig;
+import org.apache.dubbo.config.RegistryConfig;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.context.ApplicationContext;
@@ -29,8 +29,8 @@ import org.springframework.util.Assert;
 import java.lang.annotation.Annotation;
 import java.util.List;
 
-import static com.alibaba.dubbo.config.spring.util.BeanFactoryUtils.getBeans;
-import static com.alibaba.dubbo.config.spring.util.BeanFactoryUtils.getOptionalBean;
+import static org.apache.dubbo.config.spring.util.BeanFactoryUtils.getBeans;
+import static org.apache.dubbo.config.spring.util.BeanFactoryUtils.getOptionalBean;
 
 /**
  * Abstract Configurable {@link Annotation} Bean Builder
@@ -174,7 +174,7 @@ abstract class AbstractAnnotationConfigBeanBuilder<A extends Annotation, B exten
 
 
     /**
-     * Resolves the bean ids of {@link com.alibaba.dubbo.config.RegistryConfig}
+     * Resolves the bean ids of {@link org.apache.dubbo.config.RegistryConfig}
      *
      * @param annotation {@link A}
      * @return non-empty array

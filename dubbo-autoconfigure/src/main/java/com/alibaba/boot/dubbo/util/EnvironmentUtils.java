@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.alibaba.boot.dubbo.util;
+package org.apache.boot.dubbo.util;
 
 import org.springframework.core.env.*;
 import org.springframework.util.ObjectUtils;

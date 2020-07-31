@@ -14,9 +14,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.alibaba.boot.dubbo.autoconfigure;
+package org.apache.boot.dubbo.autoconfigure;
 
-import com.alibaba.dubbo.config.*;
+import org.apache.dubbo.config.*;
 
 import org.junit.Assert;
 import org.junit.Ignore;
@@ -54,7 +54,7 @@ import static org.springframework.beans.factory.BeanFactoryUtils.beansOfTypeIncl
                 "dubbo.providers.provider1.host=127.0.0.1",
                 "dubbo.consumers.consumer1.client=netty",
                 "dubbo.config.multiple=true",
-                "dubbo.scan.basePackages=com.alibaba.boot.dubbo, com.alibaba.boot.dubbo.condition"
+                "dubbo.scan.basePackages=org.apache.boot.dubbo, org.apache.boot.dubbo.condition"
         }
 )
 @SpringBootTest(
