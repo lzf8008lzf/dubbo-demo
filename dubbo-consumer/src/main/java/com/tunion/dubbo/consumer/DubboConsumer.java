@@ -21,14 +21,12 @@ import java.util.Map;
 @Slf4j
 public class DubboConsumer {
 
-    private static Logger logger = LoggerFactory.getLogger(DubboConsumer.class);
-
     @DubboReference(filter={"dubboTraceIdFilter"})
     private IDubboService consumerService;
 
     public void sayHello() {
         String retStr = consumerService.sayHello("JeffLee");
-        logger.info(retStr);
+        log.info(retStr);
     }
 
     public void queryResults(){
@@ -36,7 +34,7 @@ public class DubboConsumer {
         Results results = consumerService.queryResults(searchParams);
 
         String retStr= JacksonUtil.toJson(results);
-        logger.info(retStr);
+        log.info(retStr);
     }
 
     public WelcomeAd welcomeAd()
@@ -50,12 +48,12 @@ public class DubboConsumer {
 
         context.start();
 
-        logger.error("------------------------------------------------------------------------------------------------");
+        log.error("------------------------------------------------------------------------------------------------");
         IDubboService dubboService=(IDubboService) context.getBean("consumerService");
 
         String test=dubboService.sayHello("ttttttttttt");
 
-        logger.error(test);
+        log.error(test);
 
     }
 }

@@ -16,7 +16,7 @@ import org.springframework.util.StopWatch;
  * @author zcc
  */
 @Aspect
-@Component
+//@Component
 @Slf4j
 public class ApiLogAspect {
 
