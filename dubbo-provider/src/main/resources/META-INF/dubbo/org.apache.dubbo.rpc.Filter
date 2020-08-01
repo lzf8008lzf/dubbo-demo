@@ -1,0 +1,1 @@
+dubboTraceIdFilter=com.tunion.dubbo.filter.DubboTraceIdFilter

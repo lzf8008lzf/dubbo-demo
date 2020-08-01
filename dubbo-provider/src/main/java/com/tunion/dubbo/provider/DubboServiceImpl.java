@@ -13,7 +13,7 @@ import java.util.Map;
 /**
  * Created by Think on 2017/11/16.
  */
-@DubboService
+@DubboService(filter={"dubboTraceIdFilter"})
 @Slf4j
 public class DubboServiceImpl  implements IDubboService {
 
@@ -42,7 +42,7 @@ public class DubboServiceImpl  implements IDubboService {
         screen.setSeatNum(99);
         screen.setType("1");
 
-        Results results = new Results("0","sucess",screen);
+        Results results = new Results(true,screen);
 
         return results;
     }
