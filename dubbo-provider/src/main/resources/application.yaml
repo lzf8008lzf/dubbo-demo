@@ -1,28 +1,12 @@
-server:
-  port: 0
-  servlet:
-    context-path: /
-
 dubbo:
-  scan:
-    base-packages: com.tunion.dubbo.provider
-  protocols:
-    dubbo:
-      name: dubbo
-      port: -1
-      #      host: localhost
-      host: dubbohost
-      #    rest:
-      #      name: rest
-      #      port: 9090
-      #      server: netty
-      threads: 1000
-      queues: 500
-      #线程池类型修改(dubbo 默认是fixed，固定线程)
-      threadpool: cached
-  application:
-    name: user-service-provider
+  protocol:
+    name: dubbo
+    port: -1
   registry:
     address: zookeeper://dubbohost:2181
-#    protocol: zookeeper
+  scan:
+    base-packages: com.tunion.dubbo.provider
+spring:
+  application:
+    name: dubbo-provider-demo
 

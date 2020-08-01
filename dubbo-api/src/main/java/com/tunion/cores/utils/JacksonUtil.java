@@ -1,64 +1,64 @@
 package com.tunion.cores.utils;
 
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 
+/**
+ * @program: yueenjoy
+ * @description: Jackson 工具类
+ * @author: LiZhaofu
+ * @create: 2020-04-26 14:41
+ **/
+
 public class JacksonUtil {
-	private ObjectMapper objectMapper = null;
 
-	private static JacksonUtil jsonUtil= new JacksonUtil();
-	
-	public static String getJackson(Object obj)
-	{
-		return jsonUtil.getJson(obj);
-	}
-	
-	public static Object getJacksonObj(String json, Class clazz)
-	{
-		return jsonUtil.getObj(json, clazz);
+	private static Logger log = LoggerFactory.getLogger(JacksonUtil.class);
+
+	private final static ObjectMapper objectMapper = new ObjectMapper();
+	public static ObjectMapper getInstance() {
+		return objectMapper;
 	}
 
-	public JacksonUtil() {
-		objectMapper = new ObjectMapper();
-	}
-
-	public String getJson(Object obj) {
-		try {
-			objectMapper.setSerializationInclusion(Include.NON_NULL);
-			return objectMapper.writeValueAsString(obj);
-		} catch (JsonProcessingException e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
-	
-	public Object getObj(String json, Class clazz){
-		try {
-			return objectMapper.readValue(json, clazz);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return null;
-	}
-	
-	public String getAllJson(Object obj) {
-		try {
-			return objectMapper.writeValueAsString(obj);
-		} catch (JsonProcessingException e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
-	
-	/*
-	 * 获取类的所有字段信息，单元测试需要
+	/**
+	 * bean、array、List、Map --> json
+	 *
+	 * @param obj
+	 * @return json string
+	 * @throws Exception
 	 */
-	public static String getAllJackson(Object obj)
-	{
-		return jsonUtil.getAllJson(obj);
+	public static String toJson(Object obj) {
+		try {
+			return getInstance().writeValueAsString(obj);
+		} catch (JsonProcessingException e) {
+			log.error(e.getMessage(), e);
+		}
+		return null;
+	}
+
+	/**
+	 * string --> bean、Map、List(array)
+	 *
+	 * @param jsonStr
+	 * @param clazz
+	 * @return obj
+	 * @throws Exception
+	 */
+	public static <T> T toObject(String jsonStr, Class<T> clazz) {
+		try {
+			return getInstance().readValue(jsonStr, clazz);
+		} catch (JsonParseException e) {
+			log.error(e.getMessage(), e);
+		} catch (JsonMappingException e) {
+			log.error(e.getMessage(), e);
+		} catch (IOException e) {
+			log.error(e.getMessage(), e);
+		}
+		return null;
 	}
 }

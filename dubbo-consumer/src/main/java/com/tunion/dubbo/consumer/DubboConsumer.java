@@ -5,7 +5,6 @@ import com.tunion.dubbo.WelcomeAd;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.Reference;
 import com.tunion.cores.result.Results;
-import com.tunion.cores.utils.JacksonUtil;
 import com.tunion.dubbo.IService.IDubboService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,9 +33,9 @@ public class DubboConsumer {
     public void queryResults(){
         Map<String, Object> searchParams = new LinkedHashMap();
         Results results = consumerService.queryResults(searchParams);
-
-        String retStr=JacksonUtil.getAllJackson(results);
-        logger.info(retStr);
+//
+//        String retStr=JacksonUtil.getAllJackson(results);
+//        logger.info(retStr);
     }
 
     public WelcomeAd welcomeAd()
