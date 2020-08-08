@@ -5,11 +5,11 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.data.redis.RedisProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
 import org.springframework.data.redis.connection.jedis.JedisClientConfiguration;
@@ -17,9 +17,6 @@ import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.*;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
-import redis.clients.jedis.JedisPoolConfig;
-
-import java.time.Duration;
 
 /**
  * @program: yueenjoy
@@ -33,43 +30,45 @@ import java.time.Duration;
 @EnableConfigurationProperties(RedisProperties.class)
 public class RedisConfig {
 
-//    @Bean
-//    @ConditionalOnMissingBean(name = "jedisConnectionFactory")
-//    public JedisConnectionFactory jedisConnectionFactory(RedisProperties redisProperties) {
-//        log.info("redisProperties.host:{}",redisProperties.getHost());
-//        RedisStandaloneConfiguration redisStandaloneConfiguration = new RedisStandaloneConfiguration(redisProperties.getHost(),redisProperties.getPort());
-//        return new JedisConnectionFactory(redisStandaloneConfiguration);
-//    }
+    private RedisConnectionFactory redisConnectionFactory;
 
     @Bean
     public RedisConnectionFactory redisConnectionFactory(RedisProperties redisProperties){
         RedisStandaloneConfiguration config = new RedisStandaloneConfiguration();
-        config.setDatabase(redisProperties.getDatabase());
-        config.setHostName(redisProperties.getHost());
-		config.setPort(redisProperties.getPort());
-        config.setPassword(redisProperties.getPassword());
 
         JedisClientConfiguration.JedisClientConfigurationBuilder builder = JedisClientConfiguration.builder();
+        try {
+            builder.connectTimeout(redisProperties.getTimeout());
 
-        builder.connectTimeout(redisProperties.getTimeout());
+            log.info("database:{},host:{},port:{}",redisProperties.getDatabase(),redisProperties.getHost(),redisProperties.getPort());
+            config.setDatabase(redisProperties.getDatabase());
+            config.setHostName(redisProperties.getHost());
+            config.setPort(redisProperties.getPort());
+            config.setPassword(redisProperties.getPassword());
 
-        JedisPoolConfig poolCofig = new JedisPoolConfig();
-
-        poolCofig.setMaxIdle(redisProperties.getJedis().getPool().getMaxIdle());
-        poolCofig.setMinIdle(redisProperties.getJedis().getPool().getMinIdle());
-        poolCofig.setMaxTotal(redisProperties.getJedis().getPool().getMaxActive());
-        poolCofig.setMaxWaitMillis(redisProperties.getJedis().getPool().getMaxWait().toMillis());
+//            JedisPoolConfig poolCofig = new JedisPoolConfig();
+//
+//            poolCofig.setMaxIdle(redisProperties.getJedis().getPool().getMaxIdle());
+//            poolCofig.setMinIdle(redisProperties.getJedis().getPool().getMinIdle());
+//            poolCofig.setMaxTotal(redisProperties.getJedis().getPool().getMaxActive());
+//            poolCofig.setMaxWaitMillis(redisProperties.getJedis().getPool().getMaxWait().toMillis());
+        } catch (Exception e) {
+            log.error(e.getMessage(),e);
+        }
 
         JedisConnectionFactory jedisConnectionFactory = new JedisConnectionFactory(config, builder.build());
 
         jedisConnectionFactory.getConnection().close();
+
+        redisConnectionFactory = jedisConnectionFactory;
 
         return jedisConnectionFactory;
     }
 
     @SuppressWarnings("rawtypes")
     @Bean
-    public RedisTemplate redisTemplate(RedisConnectionFactory redisConnectionFactory) {
+    @DependsOn("redisConnectionFactory")
+    public RedisTemplate redisTemplate() {
         RedisTemplate redisTemplate = new RedisTemplate<>();
         redisTemplate.setConnectionFactory(redisConnectionFactory);
 
@@ -89,12 +88,14 @@ public class RedisConfig {
     }
 
     @Bean
-    public StringRedisTemplate stringRedisTemplate(RedisConnectionFactory redisConnectionFactory) {
+    @DependsOn("redisConnectionFactory")
+    public StringRedisTemplate stringRedisTemplate() {
         return new StringRedisTemplate(redisConnectionFactory);
     }
 
     @Bean
-    public LongRedisTemplate longRedisTemplate(RedisConnectionFactory redisConnectionFactory) {
+    @DependsOn("redisConnectionFactory")
+    public LongRedisTemplate longRedisTemplate() {
         return new LongRedisTemplate(redisConnectionFactory);
     }
 
